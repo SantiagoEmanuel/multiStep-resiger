@@ -1,0 +1,329 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Register">
+	<main
+		class="flex flex-col items-center justify-center h-screen relative overflow-hidden"
+	>
+		<form
+			action=""
+			id="form"
+			class="w-[400px] h-[390px] rounded-xl border border-[#4D5562] bg-[#212936]"
+		>
+			<section id="step-1" class="flex flex-col p-8 gap-6 text-[#E5E7EB]">
+				<h2 class="font-semibold text-lg">Register</h2>
+				<div class="flex flex-col gap-4">
+					<div class="flex flex-col gap-1">
+						<label for="name">Name</label>
+						<input
+							type="text"
+							name="name"
+							id="name"
+							placeholder="enter your name"
+							class="rounded-2xl bg-transparent focus:outline-none border-[2px] border-[#394150] focus:border-[#845EEE] p-4 text-sm text-[#E5E7EB] font-semibold capitalize"
+							autocomplete="off"
+							required
+						/>
+						<div id="nombre-error" class="hidden w-full">
+							<p class="text-red-500 font-extabold text-lg">
+								Error, please complete this input with your
+								name.
+							</p>
+						</div>
+					</div>
+					<div class="flex flex-col gap-1">
+						<label for="email">Email</label>
+						<input
+							type="email"
+							name="email"
+							id="email"
+							placeholder="example@example.com"
+							class="rounded-2xl bg-transparent focus:outline-none border-[2px] border-[#394150] focus:border-[#845EEE] p-4 text-sm text-[#E5E7EB] font-semibold"
+							autocomplete="off"
+							required
+						/>
+						<div id="email-error" class="hidden w-full">
+							<p class="text-red-500 font-extabold text-lg">
+								Error, please complete this input with your
+								name.
+							</p>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section
+				id="step-2"
+				class="hidden flex-col p-8 gap-6 text-[#E5E7EB]"
+			>
+				<h2 class="font-semibold text-lg">
+					Which topics you are interested in?
+				</h2>
+				<div class="flex flex-col gap-4">
+					<div class="flex">
+						<label
+							for="step-sd"
+							id="label-sd"
+							class="relative w-full rounded-2xl p-4 border-[2px] border-[#394150] hover:border-[#845EEE] hover:bg-[#652CD1] cursor-pointer"
+						>
+							<input
+								type="checkbox"
+								name="sd"
+								id="step-sd"
+								value="Software Development"
+								class="w-full absolute cursor-pointer opacity-0 inset-0"
+							/>
+							<span>Software Development</span>
+						</label>
+					</div>
+					<div class="flex">
+						<label
+							for="step-ux"
+							id="label-ux"
+							class="relative w-full rounded-2xl p-4 border-[2px] border-[#394150] hover:border-[#845EEE] hover:bg-[#652CD1] cursor-pointer"
+						>
+							<input
+								type="checkbox"
+								name="ux"
+								id="step-ux"
+								value="User Experience"
+								class="w-full absolute cursor-pointer opacity-0 inset-0"
+							/>
+							<span>User Experience</span>
+						</label>
+					</div>
+					<div class="flex">
+						<label
+							for="step-gd"
+							id="label-gd"
+							class="relative w-full rounded-2xl p-4 border-[2px] border-[#394150] hover:border-[#845EEE] hover:bg-[#652CD1] cursor-pointer"
+						>
+							<input
+								type="checkbox"
+								name="gd"
+								id="step-gd"
+								value="Graphic Design"
+								class="w-full absolute cursor-pointer opacity-0 inset-0"
+							/>
+							<span>Graphic Design</span>
+						</label>
+					</div>
+					<div id="topics-error" class="hidden">
+						<p class="text-red-500 font-extrabold text-lg">
+							Error, please select one topic or more.
+						</p>
+					</div>
+				</div>
+			</section>
+			<section
+				id="step-3"
+				class="hidden flex-col p-8 gap-6 text-[#E5E7EB]"
+			>
+				<h2 class="font-semibold text-lg text-[#E5E7EB]">Summary</h2>
+				<div id="data" class="flex flex-col gap-4"></div>
+			</section>
+			<div class="w-full flex justify-center">
+				<input
+					id="btn-form"
+					type="submit"
+					value="Continue"
+					class="text-sm p-4 pl-6 pr-6 font-semibold text-[#E5E7EB] rounded-full [background:linear-gradient(#845EEE,#652CD1)]"
+				/>
+			</div>
+		</form>
+		<p class="text-[#E5E7EB] font-semibol text-sm flex gap-2 pr-20">
+			steps <span id="paso">1</span> of <span>3</span>
+			<span class="text-[8px] flex gap-2 items-center">
+				<i
+					class="bx bxs-circle bg-[#652CD1] text-[#845EEE] bg-opacity-70 rounded-full p-[3px]"
+					id="paso-1"></i>
+				<i
+					class="bx bxs-circle text-[#212936] rounded-full border border-[#394150]"
+					id="paso-2"></i>
+				<i
+					class="bx bxs-circle text-[#212936] rounded-full border border-[#394150]"
+					id="paso-3"></i>
+			</span>
+		</p>
+		<img
+			src="/blur-radial.svg"
+			alt="radial background"
+			class="absolute -top-[250px] -left-[200px] -z-30"
+		/>
+		<img
+			src="/blur-radial.svg"
+			alt="radial background"
+			class="absolute -bottom-[250px] -right-[280px] -z-30"
+		/>
+	</main>
+</Layout>
+
+<script>
+	// topics, checkbox and function
+	// Software Development
+	const sd = document.getElementById("label-sd");
+	const checkbox_sd = document.getElementById("step-sd");
+	sd?.addEventListener("click", () => {
+		if (checkbox_sd.checked) {
+			sd.style.background = "#652CD1";
+			sd.style.borderColor = "#845EEE";
+
+			// Guardo el valor en el array
+			topicSelected.push(checkbox_sd.value);
+			console.log(topicSelected);
+		} else {
+			sd.style.background = "transparent";
+			sd.style.borderColor = "#394150";
+
+			// Elimino el valor del array
+			const index = topicSelected.indexOf(checkbox_sd.value);
+			topicSelected.splice(index);
+		}
+	});
+
+	// User Experience
+	const ux = document.getElementById("label-ux");
+	const checkbox_ux = document.getElementById("step-ux");
+	ux?.addEventListener("click", () => {
+		if (checkbox_ux.checked) {
+			ux.style.background = "#652CD1";
+			ux.style.borderColor = "#845EEE";
+
+			// Guardo el valor en el array
+			topicSelected.push(checkbox_ux.value);
+			console.log(topicSelected);
+		} else {
+			ux.style.background = "transparent";
+			ux.style.borderColor = "#394150";
+
+			// Elimino el valor del array
+			const index = topicSelected.indexOf(checkbox_ux.value);
+			topicSelected.splice(index);
+		}
+	});
+
+	// Graphic Design
+	const gd = document.getElementById("label-gd");
+	const checkbox_gd = document.getElementById("step-gd");
+	gd?.addEventListener("click", () => {
+		if (checkbox_gd.checked) {
+			gd.style.background = "#652CD1";
+			gd.style.borderColor = "#845EEE";
+
+			// Guardo el valor en el array
+			topicSelected.push(checkbox_gd.value);
+			console.log(topicSelected);
+		} else {
+			gd.style.background = "transparent";
+			gd.style.borderColor = "#394150";
+
+			// Elimino el valor del array
+			const index = topicSelected.indexOf(checkbox_gd.value);
+			topicSelected.splice(index);
+		}
+	});
+
+	// array de topics seleccionados
+	const topicSelected = [];
+
+	// Form, Secciones, Inputs y Errores
+	const form = document.getElementById("form");
+	const step_1 = document.getElementById("step-1");
+	const step_2 = document.getElementById("step-2");
+	const step_3 = document.getElementById("step-3");
+	const inputNombre = document.getElementById("name");
+	const inputEmail = document.getElementById("email");
+	const nombreError = document.getElementById("nombre-error");
+	const emailError = document.getElementById("email-error");
+	const topicsError = document.getElementById("topics-error");
+	const data = document.getElementById("data");
+	const btn = document.getElementById("btn-form");
+	const paso = document.getElementById("paso");
+	const paso_1 = document.getElementById("paso-1");
+	const paso_2 = document.getElementById("paso-2");
+	const paso_3 = document.getElementById("paso-3");
+
+	// error
+	let error;
+
+	// Valores step-1
+	const nombre = [];
+	const email = [];
+
+	form?.addEventListener("submit", (e) => {
+		e.preventDefault();
+
+		if (!step_1?.classList.contains("hidden")) {
+			if (inputNombre.value == "") {
+				nombreError?.classList.remove("hidden");
+				error = true;
+			}
+			if (inputEmail.value == "") {
+				emailError?.classList.remove("hidden");
+				error = true;
+			}
+			if (!error) {
+				nombre.push(inputNombre.value);
+				email.push(inputEmail.value);
+				console.log(nombre, email);
+				step_1?.classList.add("hidden");
+				step_2?.classList.remove("hidden");
+				paso.innerHTML = "2";
+				paso_2?.classList.add("bg-[#652CD1]");
+				paso_2.classList.add("text-[#845EEE]");
+				paso_1.classList.remove("bg-[#652CD1]");
+				paso_2?.classList.remove("text-[#212936]");
+			}
+		} else if (!step_2?.classList.contains("hidden")) {
+			if (
+				checkbox_sd.checked ||
+				checkbox_ux.checked ||
+				checkbox_gd.checked
+			) {
+				console.log(topicSelected);
+				data.innerHTML = `
+					<div>
+						<p>Name: <span class='font-bold text-lg'>${nombre.join()}</span></p>
+						<p>Email: <span class='font-bold text-lg'>${email.join()}</span></p>
+					</div>
+					<div>
+						<p>Topics:</p>
+						<ul id='topic-list' class='list-disc'>
+							${topicSelected.map(
+								(topic) =>
+									`<li class='font-bold text-lg flex gap-2 items-center'>
+													<i class='bx bxs-circle text-sm'></i>
+													${topic}
+									</li>`,
+							)}	
+						</ul>
+					</div>
+				`;
+
+				step_2?.classList.add("hidden");
+				step_3?.classList.remove("hidden");
+				step_3?.classList.add("flex");
+				btn.value = "confirm";
+				paso.innerHTML = "3";
+				paso_3?.classList.add("bg-[#652CD1]");
+				paso_3.classList.add("text-[#845EEE]");
+				paso_2.classList.remove("bg-[#652CD1]");
+				paso_3?.classList.remove("text-[#212936]");
+			} else {
+				topicsError?.classList.remove("hidden");
+			}
+		} else if (!step_3?.classList.contains("hidden")) {
+			alert("✅ Success");
+			form.reset();
+		}
+	});
+
+	inputNombre?.addEventListener("keyup", () => {
+		nombreError?.classList.add("hidden");
+		error = false;
+	});
+	inputEmail?.addEventListener("keyup", () => {
+		emailError?.classList.add("hidden");
+		error = false;
+	});
+</script>
